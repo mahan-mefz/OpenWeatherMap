@@ -87,3 +87,16 @@ class WeatherApp:
         """
         اجرای برنامه اصلی که چندین شهر از کاربر دریافت کرده و اطلاعات آب‌وهوایی را نمایش و ذخیره می‌کند.
         """
+        cities = input("نام شهرها را با کاما جدا کنید: ").split(',')
+        cities = [city.strip() for city in cities]  # حذف فاصله‌های اضافی
+        
+        for city in cities:
+            weather_data = self.get_weather(city)
+            self.display_weather_info(city, weather_data)
+            self.save_weather_to_file(city, weather_data)
+
+
+if __name__ == "__main__":
+    api_key = "API_KEY_شخصی_خود"  # کلید API خود را اینجا وارد کنید
+    app = WeatherApp(api_key)
+    app.run()
